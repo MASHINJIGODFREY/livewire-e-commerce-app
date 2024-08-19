@@ -5,10 +5,18 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\Product;
 use App\Models\Category;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class ProductComponent extends Component
 {
     public $id;
+
+    public function AddToCart($id, $name, $price)
+    {
+        dd($name);
+        Cart::add($id, $name, 1, $price)->associate("App\Models\Product");
+        // return redirect()->route("cart");
+    }
 
     public function mount($id)
     {
