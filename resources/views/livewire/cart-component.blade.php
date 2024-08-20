@@ -29,7 +29,7 @@
                                 <tr>
                                     <td class="image product-thumbnail"><img src="{{ asset($item->model->image) }}" alt="#"></td>
                                     <td class="product-des product-name">
-                                        <h5 class="product-name"><a href="{{ route('product', ['id' => $item->model->id]) }}">{{ $item->name }}</a></h5>
+                                        <h5 class="product-name"><a href="{{ route('product', ['id' => $item->model->id]) }}" wire:navigate>{{ $item->name }}</a></h5>
                                         <p class="font-xs">{{ $item->model->short_description }}</p>
                                     </td>
                                     <td class="price" data-title="Price"><span>${{ $item->price }} </span></td>
