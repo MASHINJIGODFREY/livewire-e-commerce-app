@@ -35,20 +35,20 @@
                                     <td class="price" data-title="Price"><span>${{ $item->price }} </span></td>
                                     <td class="text-center" data-title="Stock">
                                         <div class="detail-qty border radius  m-auto">
-                                            <a href="#" class="qty-down" wire:click.prevent="decrementqty({{ $item->rowId }}, {{ $item->qty }})"><i class="fi-rs-angle-small-down"></i></a>
+                                            <a href="#" class="qty-down" wire:click.prevent="decrementqty('{{ $item->rowId }}')"><i class="fi-rs-angle-small-down"></i></a>
                                             <span class="qty-val">{{ $item->qty }}</span>
-                                            <a href="#" class="qty-up" wire:click.prevent="incrementqty({{ $item->rowId }}, {{ $item->qty }})"><i class="fi-rs-angle-small-up"></i></a>
+                                            <a href="#" class="qty-up" wire:click.prevent="incrementqty('{{ $item->rowId }}')"><i class="fi-rs-angle-small-up"></i></a>
                                         </div>
                                     </td>
                                     <td class="text-right" data-title="Cart">
                                         <span>${{ $item->subtotal() }} </span>
                                     </td>
-                                    <td class="action" data-title="Remove"><a href="#" class="text-muted" wire:click.prevent="Cart::remove({{ $item->rowId }})"><i class="fi-rs-trash"></i></a></td>
+                                    <td class="action" data-title="Remove"><a href="#" class="text-muted" wire:click.prevent="destroy('{{ $item->rowId }}')"><i class="fi-rs-trash"></i></a></td>
                                 </tr>
                                 @endforeach
                                 <tr>
                                     <td colspan="6" class="text-end">
-                                        <a href="#" class="text-muted" wire:click.prevent="Cart::instance('cart')->destroy()"> <i class="fi-rs-cross-small"></i> Clear Cart</a>
+                                        <a href="#" class="text-muted" wire:click.prevent="clearCart()"> <i class="fi-rs-cross-small"></i> Clear Cart</a>
                                     </td>
                                 </tr>
                             </tbody>
