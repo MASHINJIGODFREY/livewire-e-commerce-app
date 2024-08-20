@@ -3,8 +3,8 @@
         <div class="container">
             <div class="breadcrumb">
                 <a href="{{ route('home') }}" rel="nofollow" wire:navigate>Home</a>
-                <span></span> Fashion
-                <span></span> Abstract Print Patchwork Dress
+                @if($product_category)<span></span> {{ $product_category->name }} @endif
+                <span></span> {{ $product->name }}
             </div>
         </div>
     </div>
@@ -100,13 +100,15 @@
                                     <div class="bt-1 border-color-1 mt-30 mb-30"></div>
                                     <div class="detail-extralink">
                                         <div class="detail-qty border radius">
-                                            <a href="#" class="qty-down"><i class="fi-rs-angle-small-down"></i></a>
-                                            <span class="qty-val">1</span>
-                                            <a href="#" class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
+                                            <a href="#" class="qty-down" wire:click.prevent="decrementqty"><i class="fi-rs-angle-small-down"></i></a>
+                                            <span class="qty-val">{{ $qty }}</span>
+                                            <a href="#" class="qty-up" wire:click.prevent="incrementqty"><i class="fi-rs-angle-small-up"></i></a>
                                         </div>
                                         <div class="product-extra-link2">
-                                            <button type="button" class="button button-add-to-cart" wire:click.prevent="addToCart({{ $product->id }}, {{ $product->name }}, {{ $product->sale_price }})" wire:loading.remove wire:target="addToCart">Add to cart</button>
-                                            <button type="button" class="button button-add-to-cart" wire:loading wire:target="addToCart" disabled>Adding to Cart...</button>
+                                            <button type="button" class="button button-add-to-cart" wire:click="addToCart" wire:loading.remove wire:target="addToCart">Add to cart</button>
+                                            <button type="button" class="button button-add-to-cart" wire:loading wire:target="addToCart" disabled>
+                                                &#8987; Adding to Cart...
+                                            </button>
                                         </div>
                                     </div>
                                     <ul class="product-meta font-xs color-grey mt-50">

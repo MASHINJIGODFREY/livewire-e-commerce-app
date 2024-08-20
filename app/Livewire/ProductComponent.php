@@ -10,12 +10,33 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 class ProductComponent extends Component
 {
     public $id;
+    public $name;
+    public $qty = 1;
+    public $price;
 
-    public function AddToCart($id, $name, $price)
+    public function incrementqty()
     {
-        dd($name);
-        Cart::add($id, $name, 1, $price)->associate("App\Models\Product");
-        // return redirect()->route("cart");
+        $this->qty++;
+    }
+
+    public function decrementqty()
+    {
+        if($this->qty > 1) $this->qty--;
+    }
+
+    public function addToCart()
+    {
+        Cart::instance('cart')->add($this->id, $this->name, $this->qty, $this->price)->associate("App\Models\Product");
+        return $this->redirect('/cart', navigate: true);
+    }
+
+    function getItemById($array, $id) {
+        foreach ($array as $item) {
+            if ($item['id'] === $id) {
+                return $item;
+            }
+        }
+        return null; // Return null if no item found
     }
 
     public function mount($id)
@@ -26,11 +47,15 @@ class ProductComponent extends Component
     public function render()
     {
         $product = Product::where('id', $this->id)->first();
+        $this->name = $product->name;
+        $this->price = $product->sale_price;
         $categories = Category::active()->get();
+        $product_category = $this->getItemById($categories, $product->category_id);
         $related = Product::where('category_id', $product->category_id)->where('id', '!=', $product->id)->take(4)->get();
         $latest_products = Product::latest()->take(3)->get();
         return view('livewire.product-component', [
             'product' => $product, 
+            'product_category' => $product_category,
             'categories' => $categories,
             'related' => $related,
             'latest_products' => $latest_products
