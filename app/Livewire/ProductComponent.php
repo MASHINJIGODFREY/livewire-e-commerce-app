@@ -27,6 +27,7 @@ class ProductComponent extends Component
     public function addToCart()
     {
         Cart::instance('cart')->add($this->id, $this->name, $this->qty, $this->price)->associate("App\Models\Product");
+        flash()->success('Item added to cart successfully!');
         return $this->redirect('/cart', navigate: true);
     }
 
