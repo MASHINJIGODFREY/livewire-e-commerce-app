@@ -23,6 +23,8 @@ Route::get('/contact', App\Livewire\ContactComponent::class)->name('contact');
 
 Route::get('/product/{id}', App\Livewire\ProductComponent::class)->name('product');
 
+Route::get('/search-product', App\Livewire\SearchComponent::class)->name('search');
+
 Route::get('/shop', App\Livewire\ShopComponent::class)->name('shop');
 
 Route::get('/', App\Livewire\HomeComponent::class)->name('home');
