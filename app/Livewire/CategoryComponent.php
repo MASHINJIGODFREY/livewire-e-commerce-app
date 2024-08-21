@@ -6,6 +6,7 @@ use Livewire\WithPagination;
 use Livewire\Component;
 use App\Models\Category;
 use App\Models\Product;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class CategoryComponent extends Component
 {
@@ -28,6 +29,13 @@ class CategoryComponent extends Component
     public function mount($id)
     {
         $this->id = $id;
+    }
+
+    public function addToCart($id, $name, $price)
+    {
+        Cart::instance('cart')->add($id, $name, 1, $price)->associate("App\Models\Product");
+        $this->dispatch('refresh-cart-icon-component');
+        flash()->success('Item added to cart successfully!');
     }
 
     public function render()
