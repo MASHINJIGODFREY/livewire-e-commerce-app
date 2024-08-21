@@ -4,6 +4,7 @@
             <div class="breadcrumb">
                 <a href="{{ route('home') }}" rel="nofollow" wire:navigate>Home</a>
                 <span></span> Shop
+                <span></span> {{ $category->name }}
             </div>
         </div>
     </div>

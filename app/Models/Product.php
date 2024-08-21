@@ -62,4 +62,12 @@ class Product extends Model
             return 0;
         }
     }
+
+     /**
+     * Get the category from which the product belongs.
+     */
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

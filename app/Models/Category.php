@@ -53,4 +53,12 @@ class Category extends Model
     {
         $query->where('status', '=', 0);
     }
+
+    /**
+     * Get the products for the category.
+     */
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }

@@ -15,6 +15,8 @@ Route::get('/about', App\Livewire\AboutComponent::class)->name('about');
 
 Route::get('/cart', App\Livewire\CartComponent::class)->name('cart');
 
+Route::get('/category/{id}', App\Livewire\CategoryComponent::class)->name('category');
+
 Route::get('/checkout', App\Livewire\CheckoutComponent::class)->name('checkout');
 
 Route::get('/contact', App\Livewire\ContactComponent::class)->name('contact');
