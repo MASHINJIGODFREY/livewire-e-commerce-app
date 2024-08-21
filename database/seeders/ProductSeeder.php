@@ -33,6 +33,10 @@ class ProductSeeder extends Seeder
             'assets/imgs/shop/category-thumb-4.jpg'
         ];
 
+        $sizes = ['XL','S','L','XXL','M'];
+
+        $colors = ['grey','navy','black','charcoal','blue'];
+
         foreach(range(1, 100) as $key => $value){
             $name = $this->generateUniqueProductName($faker);
             Product::create([
@@ -43,7 +47,9 @@ class ProductSeeder extends Seeder
                 "regular_price" => $faker->numberBetween(100, 500),
                 "sale_price" => $faker->numberBetween(50, 300),
                 "image" => $images[rand(0, 2)],
-                "images" => "1.png",
+                "images" => json_encode($images),
+                "size" => json_encode($sizes),
+                "color" => json_encode($colors),
                 "category_id" => rand(1, 11)
             ]);
         }

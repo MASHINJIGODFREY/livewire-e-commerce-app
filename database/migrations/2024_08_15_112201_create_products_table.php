@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string("sale_price");
             $table->string("image");
             $table->string("images")->nullable();
+            $table->string("size")->nullable();
+            $table->string("color")->nullable();
             $table->integer('category_id');
             $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
