@@ -44,6 +44,8 @@ class Product extends Model
         'sale_price',
         'image',
         'images',
+        'size',
+        'color',
         'status'
     ];
 
@@ -55,7 +57,7 @@ class Product extends Model
     protected function getDiscountPercentageAttribute(): Float
     {
         if($this->regular_price > 0){
-            return round((((intval($this->regular_price) - intval($this->sale_price)) / intval($this->regular_price))*100), 2);
+            return round((((intval($this->regular_price) - intval($this->sale_price)) / intval($this->regular_price))*100), 0);
         }else{
             return 0;
         }

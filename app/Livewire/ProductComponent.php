@@ -50,12 +50,19 @@ class ProductComponent extends Component
         $product = Product::where('id', $this->id)->first();
         $this->name = $product->name;
         $this->price = $product->sale_price;
+        $colors = json_decode($product->color);
+        $sizes = json_decode($product->size);
+        $images = json_decode($product->images);
+        array_splice($images, 0, 0, $product->image);
         $categories = Category::active()->get();
         $product_category = $this->getItemById($categories, $product->category_id);
         $related = Product::where('category_id', $product->category_id)->where('id', '!=', $product->id)->take(4)->get();
         $latest_products = Product::latest()->take(3)->get();
         return view('livewire.product-component', [
             'product' => $product, 
+            'images' => $images,
+            'colors' => $colors,
+            'sizes' => $sizes,
             'product_category' => $product_category,
             'categories' => $categories,
             'related' => $related,

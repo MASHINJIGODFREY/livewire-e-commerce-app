@@ -19,14 +19,17 @@
                                     <span class="zoom-icon"><i class="fi-rs-search"></i></span>
                                     <!-- MAIN SLIDES -->
                                     <div class="product-image-slider">
+                                        @foreach($images as $key => $image)
                                         <figure class="border-radius-10">
-                                            <img src="{{ asset($product->image) }}" alt="product image">
+                                            <img src="{{ asset($image) }}" alt="product image">
                                         </figure>
+                                        @endforeach
                                     </div>
                                     <!-- THUMBNAILS -->
                                     <div class="slider-nav-thumbnails pl-15 pr-15">
-                                        <div><img src="{{ asset($product->image) }}" alt="product image"></div>
-                                        <div><img src="{{ asset($product->image) }}" alt="product image"></div>
+                                        @foreach($images as $key => $image)
+                                        <div><img src="{{ asset($image) }}" alt="product image"></div>
+                                        @endforeach
                                     </div>
                                 </div>
                                 <!-- End Gallery -->
@@ -78,23 +81,17 @@
                                     <div class="attr-detail attr-color mb-15">
                                         <strong class="mr-10">Color</strong>
                                         <ul class="list-filter color-filter">
-                                            <li><a href="#" data-color="Red"><span class="product-color-red"></span></a></li>
-                                            <li><a href="#" data-color="Yellow"><span class="product-color-yellow"></span></a></li>
-                                            <li class="active"><a href="#" data-color="White"><span class="product-color-white"></span></a></li>
-                                            <li><a href="#" data-color="Orange"><span class="product-color-orange"></span></a></li>
-                                            <li><a href="#" data-color="Cyan"><span class="product-color-cyan"></span></a></li>
-                                            <li><a href="#" data-color="Green"><span class="product-color-green"></span></a></li>
-                                            <li><a href="#" data-color="Purple"><span class="product-color-purple"></span></a></li>
+                                            @foreach($colors as $key => $color)
+                                            <li><a href="#" data-color="{{ $color }}"><span class="product-color-{{ $color }}"></span></a></li>
+                                            @endforeach
                                         </ul>
                                     </div>
                                     <div class="attr-detail attr-size">
                                         <strong class="mr-10">Size</strong>
                                         <ul class="list-filter size-filter font-small">
-                                            <li><a href="#">S</a></li>
-                                            <li class="active"><a href="#">M</a></li>
-                                            <li><a href="#">L</a></li>
-                                            <li><a href="#">XL</a></li>
-                                            <li><a href="#">XXL</a></li>
+                                            @foreach($sizes as $key => $size)
+                                            <li><a href="#">{{ $size }}</a></li>
+                                            @endforeach
                                         </ul>
                                     </div>
                                     <div class="bt-1 border-color-1 mt-30 mb-30"></div>

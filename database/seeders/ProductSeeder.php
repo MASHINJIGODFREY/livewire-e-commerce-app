@@ -35,7 +35,7 @@ class ProductSeeder extends Seeder
 
         $sizes = ['XL','S','L','XXL','M'];
 
-        $colors = ['grey','navy','black','charcoal','blue'];
+        $colors = ['red','yellow','white','orange','cyan','green','purple'];
 
         foreach(range(1, 100) as $key => $value){
             $name = $this->generateUniqueProductName($faker);
