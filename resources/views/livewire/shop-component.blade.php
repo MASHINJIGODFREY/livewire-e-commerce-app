@@ -83,7 +83,10 @@
                                         <span class="old-price">${{ $product->regular_price }}</span>
                                     </div>
                                     <div class="product-action-1 show">
-                                        <a aria-label="Add To Cart" class="action-btn hover-up" href="shop-cart.php"><i class="fi-rs-shopping-bag-add"></i></a>
+                                        <a aria-label="Add To Cart" class="action-btn hover-up" wire:click.prevent="addToCart('{{$product->id}}', '{{$product->name}}', '{{$product->sale_price}}')">
+                                            <i class="fi-rs-shopping-bag-add" wire:loading.remove wire:target="addToCart('{{$product->id}}', '{{$product->name}}', '{{$product->sale_price}}')"></i>
+                                            <span wire:loading wire:target="addToCart('{{$product->id}}', '{{$product->name}}', '{{$product->sale_price}}')">&#8987;</span>
+                                        </a>
                                     </div>
                                 </div>
                             </div>

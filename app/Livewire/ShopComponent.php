@@ -6,6 +6,7 @@ use Livewire\WithPagination;
 use Livewire\Component;
 use App\Models\Category;
 use App\Models\Product;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class ShopComponent extends Component
 {
@@ -22,6 +23,13 @@ class ShopComponent extends Component
     public function setSortPattern($pattern)
     {
         $this->orderBy = $pattern;
+    }
+
+    public function addToCart($id, $name, $price)
+    {
+        Cart::instance('cart')->add($id, $name, 1, $price)->associate("App\Models\Product");
+        $this->dispatch('refresh-cart-icon-component');
+        flash()->success('Item added to cart successfully!');
     }
 
     public function render()
