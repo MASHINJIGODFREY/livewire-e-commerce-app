@@ -22,13 +22,14 @@
                                     <div class="padding_eight_all bg-white">
                                         <div class="heading_s1">
                                             <h3 class="mb-30">Login</h3>
-                                        </div>                                    
-                                        <!-- Session Status -->
-                                        <x-auth-session-status class="mb-4" :status="session('status')" />
+                                        </div>  
                                         <form method="POST" action="{{ route('login') }}">
                                             @csrf
                                             <div class="form-group">
                                                 <input type="email" name="email" :value="old('email')" placeholder="Your Email" required="" autofocus autocomplete="username">
+                                                @error('email')
+                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                             <div class="form-group">
                                                 <input type="password" name="password" required autocomplete="current-password" placeholder="Password">
