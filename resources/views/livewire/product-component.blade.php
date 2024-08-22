@@ -18,7 +18,7 @@
                                 <div class="detail-gallery">
                                     <span class="zoom-icon"><i class="fi-rs-search"></i></span>
                                     <!-- MAIN SLIDES -->
-                                    <div class="product-image-slider">
+                                    <div class="product-image-slider" wire:ignore>
                                         @foreach($images as $key => $image)
                                         <figure class="border-radius-10">
                                             <img src="{{ asset($image) }}" alt="product image">
@@ -26,7 +26,7 @@
                                         @endforeach
                                     </div>
                                     <!-- THUMBNAILS -->
-                                    <div class="slider-nav-thumbnails pl-15 pr-15">
+                                    <div class="slider-nav-thumbnails pl-15 pr-15" wire:ignore>
                                         @foreach($images as $key => $image)
                                         <div><img src="{{ asset($image) }}" alt="product image"></div>
                                         @endforeach
@@ -52,8 +52,7 @@
                                         </div>
                                         <div class="product-rate-cover text-end">
                                             <div class="product-rate d-inline-block">
-                                                <div class="product-rating" style="width:90%">
-                                                </div>
+                                                <div class="product-rating" style="width:90%"></div>
                                             </div>
                                             <span class="font-small ml-5 text-muted"> (25 reviews)</span>
                                         </div>
@@ -82,7 +81,7 @@
                                         <strong class="mr-10">Color</strong>
                                         <ul class="list-filter color-filter">
                                             @foreach($colors as $key => $color)
-                                            <li><a href="#" data-color="{{ $color }}"><span class="product-color-{{ $color }}"></span></a></li>
+                                            <li><a href="O" data-color="{{ $color }}" wire:click.prevent="getColor('{{$color}}')"><span class="product-color-{{ $color }}"></span></a></li>
                                             @endforeach
                                         </ul>
                                     </div>
@@ -90,7 +89,7 @@
                                         <strong class="mr-10">Size</strong>
                                         <ul class="list-filter size-filter font-small">
                                             @foreach($sizes as $key => $size)
-                                            <li><a href="#">{{ $size }}</a></li>
+                                            <li><a href="O" wire:click.prevent="getSize('{{$size}}')">{{ $size }}</a></li>
                                             @endforeach
                                         </ul>
                                     </div>

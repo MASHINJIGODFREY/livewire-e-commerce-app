@@ -13,6 +13,8 @@ class ProductComponent extends Component
     public $name;
     public $qty = 1;
     public $price;
+    public $myColor = "";
+    public $mySize = "";
 
     public function incrementqty()
     {
@@ -24,9 +26,19 @@ class ProductComponent extends Component
         if($this->qty > 1) $this->qty--;
     }
 
+    public function getColor($color)
+    {
+        $this->myColor = $color;
+    }
+
+    public function getSize($size)
+    {
+        $this->mySize = $size;
+    }
+
     public function addToCart()
     {
-        Cart::instance('cart')->add($this->id, $this->name, $this->qty, $this->price)->associate("App\Models\Product");
+        Cart::instance('cart')->add($this->id, $this->name, $this->qty, $this->price, ['color' => $this->myColor, 'size' => $this->mySize])->associate("App\Models\Product");
         flash()->success('Item added to cart successfully!');
         return $this->redirect('/cart', navigate: true);
     }
