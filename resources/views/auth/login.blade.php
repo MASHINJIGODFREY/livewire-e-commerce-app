@@ -23,13 +23,19 @@
                                         <div class="heading_s1">
                                             <h3 class="mb-30">Login</h3>
                                         </div>  
+                                        @if ($errors->any())
+                                            <div class="alert alert-danger">
+                                                <ul>
+                                                    @foreach ($errors->all() as $error)
+                                                        <li>{{ $error }}</li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        @endif    
                                         <form method="POST" action="{{ route('login') }}">
                                             @csrf
                                             <div class="form-group">
                                                 <input type="email" name="email" :value="old('email')" placeholder="Your Email" required="" autofocus autocomplete="username">
-                                                @error('email')
-                                                    <div class="invalid-feedback">{{ $message }}</div>
-                                                @enderror
                                             </div>
                                             <div class="form-group">
                                                 <input type="password" name="password" required autocomplete="current-password" placeholder="Password">
