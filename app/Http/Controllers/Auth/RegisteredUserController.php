@@ -9,7 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
+use Illuminate\Validation\Rules\Password;
 use Illuminate\View\View;
 
 class RegisteredUserController extends Controller
@@ -32,7 +32,20 @@ class RegisteredUserController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'password' => ['required', 'confirmed', Password::min(8)->letters()->numbers()],
+        ], [
+            'name.required' => 'Please enter your full name.',
+            'name.string' => 'Your name should be in words.',
+            'name.max' => 'Your name is too long.',
+            'email.required' => 'Please enter your E-Mail address.',
+            'email.string' => 'Your E-Mail should be in worlds.',
+            'email.lowercase' => 'Your E-Mail should consist of lowercase letters only.',
+            'email.email' => 'Please provide a valid E-Mail address.',
+            'email.max' => 'Your E-Mail is too long.',
+            'email.unique' => 'The E-Mail you provided has already been used.',
+            'password.required' => 'Please enter your password.',
+            'password.letters' => 'Your password must include at least one letter.',
+            'password.numbers' => 'Your password must include at least one number.',
         ]);
 
         $user = User::create([
