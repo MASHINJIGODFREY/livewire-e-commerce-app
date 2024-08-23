@@ -25,7 +25,7 @@ class DeleteAccountForm extends Form
         $this->validate();
     }
     
-    public function destroy(array $payload)
+    public function destroy()
     {
         $this->user->delete();
     }
