@@ -29,10 +29,16 @@ Route::get('/shop', App\Livewire\ShopComponent::class)->name('shop');
 
 Route::get('/', App\Livewire\HomeComponent::class)->name('home');
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth')->prefix('account')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/account-details', App\Livewire\AccountDetailsComponent::class)->name('account_details');
+
+    Route::get('/change-password', App\Livewire\ChangePasswordComponent::class)->name('change_password');
+
+    Route::get('/', App\Livewire\DashboardComponent::class)->name('dashboard');
 });
 
 require __DIR__.'/auth.php';

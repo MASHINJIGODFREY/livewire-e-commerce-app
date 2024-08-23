@@ -280,16 +280,7 @@
                                         <li><a class="{{ request()->routeIs('about') ? 'active' : '' }}" href="{{ route('about') }}" wire:navigate>About</a></li>
                                         <li><a class="{{ request()->routeIs('shop') ? 'active' : '' }}" href="{{ route('shop') }}" wire:navigate>Shop</a></li>                               
                                         <li><a class="{{ request()->routeIs('contact') ? 'active' : '' }}" href="{{ route('contact') }}" wire:navigate>Contact</a></li>
-                                        <li><a href="#">My Account<i class="fi-rs-angle-down"></i></a>
-                                            <ul class="sub-menu">
-                                                <li><a href="#">Dashboard</a></li>
-                                                <li><a href="#">Products</a></li>
-                                                <li><a href="#">Categories</a></li>
-                                                <li><a href="#">Coupons</a></li>
-                                                <li><a href="#">Orders</a></li>
-                                                <li><a href="#">Customers</a></li>                                         
-                                            </ul>
-                                        </li>
+                                        <li><a class="{{ Str::startsWith(request()->path(), 'account') ? 'active' : '' }}" href="{{ route('dashboard') }}" wire:navigate>My Account</a></li>
                                     </ul>
                                 </nav>
                             </div>
