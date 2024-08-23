@@ -11,6 +11,9 @@
                 <a class="nav-link {{ request()->routeIs('change_password') ? 'active' : '' }}" href="{{ route('change_password') }}" wire:navigate><i class="fi-rs-key mr-10"></i>Change Password</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('delete_account') ? 'active' : '' }}" href="{{ route('delete_account') }}" wire:navigate><i class="fi-rs-trash mr-10"></i>Delete Account</a>
+            </li>
+            <li class="nav-item">
                 <form id="logout-form-two" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
                 </form>

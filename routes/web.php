@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/about', App\Livewire\AboutComponent::class)->name('about');
@@ -27,7 +26,10 @@ Route::middleware('auth')->prefix('account')->group(function () {
 
     Route::get('/change-password', App\Livewire\ChangePasswordComponent::class)->name('change_password');
 
+    Route::get('/delete-account', App\Livewire\DeleteAccountComponent::class)->name('delete_account');
+
     Route::get('/', App\Livewire\DashboardComponent::class)->name('dashboard');
+
 });
 
 require __DIR__.'/auth.php';
