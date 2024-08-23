@@ -20,13 +20,12 @@ class DeleteAccountForm extends Form
         return ['password' => ['required', 'current_password']];
     }
 
-    public function checkPassword()
-    {
-        $this->validate();
-    }
-    
     public function destroy()
     {
+        $this->validate();
+        Auth::logout();
         $this->user->delete();
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
     }
 }

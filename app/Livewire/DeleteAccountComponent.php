@@ -18,27 +18,9 @@ class DeleteAccountComponent extends Component
  
     public function deleteUser()
     {
-        $this->form->checkPassword();
-        sweetalert()
-            ->showDenyButton()
-            ->info('Are you sure you want to delete your account ?'); 
-    }
-
-    #[On('sweetalert:confirmed')]
-    public function onConfirmed(array $payload)
-    {
-        Auth::logout();
         $this->form->destroy();
-        request()->session()->invalidate();
-        request()->session()->regenerateToken();
         flash()->success('Your account has been successfully deleted!');
         return $this->redirect('/login', navigate: true);
-    }
-
-    #[On('sweetalert:denied')]
-    public function onDeny(array $payload): void
-    {
-        flash()->info('Deletion cancelled.');
     }
     
     public function render()
