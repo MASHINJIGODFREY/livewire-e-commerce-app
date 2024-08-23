@@ -5,9 +5,12 @@ namespace App\Livewire\Forms;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class DeleteAccountForm extends Form
 {
+    public ?User $user;
+
     public $password = '';
  
     public function setUser(User $user)
@@ -20,12 +23,13 @@ class DeleteAccountForm extends Form
         return ['password' => ['required', 'current_password']];
     }
 
-    public function destroy()
+    public function checkPassword()
     {
         $this->validate();
-        Auth::logout();
+    }
+
+    public function destroy()
+    {
         $this->user->delete();
-        request()->session()->invalidate();
-        request()->session()->regenerateToken();
     }
 }
