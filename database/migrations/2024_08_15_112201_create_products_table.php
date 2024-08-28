@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string("images")->nullable();
             $table->string("size")->nullable();
             $table->string("color")->nullable();
-            $table->integer('category_id');
+            $table->unsignedBigInteger('category_id')->index();
             $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
         });
