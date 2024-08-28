@@ -43,7 +43,7 @@ class ProductSeeder extends Seeder
                 "name" => $name,
                 "slug" => Str::slug($name, "."),
                 "short_description" => $faker->text(100),
-                "long_description" => $faker->text(300),
+                "long_description" => $faker->text(250),
                 "regular_price" => $faker->numberBetween(100, 500),
                 "sale_price" => $faker->numberBetween(50, 300),
                 "image" => $images[rand(0, 2)],
